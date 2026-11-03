@@ -1,0 +1,37 @@
+{{define "home.html"}}<section class="hero" aria-labelledby="hero-heading">
+  <span class="hero__word" aria-hidden="true">{{.Hero.BackgroundWord}}</span>
+
+  <div class="hero__top">
+    <p class="hero__intro">
+      {{.Hero.Intro}}
+      <button class="hero__more" type="button" data-about-open aria-haspopup="dialog" aria-controls="about-panel">[more]</button>
+    </p>
+    <p class="hero__descriptor">{{.Hero.Descriptor}}</p>
+  </div>
+
+  <h1 class="hero__heading sr-only" id="hero-heading">Deryl Pyo</h1>
+
+  <div class="hero__stage">
+    <div class="lanyard-mount" data-lanyard-root></div>
+  </div>
+</section>
+
+<div class="about" data-about hidden>
+  <div class="about__overlay" data-about-close></div>
+  <aside class="about__panel" id="about-panel" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
+    <button class="about__close" type="button" data-about-close aria-label="Close About panel">&times;</button>
+    <h2 class="about__title" id="about-title">About</h2>
+    {{range .Hero.About.Bio}}<p class="about__text">{{.}}</p>{{end}}
+    <img class="about__portrait" src="{{.Hero.About.Portrait}}" alt="Portrait of Deryl Pyo" loading="lazy" decoding="async">
+    <h3 class="about__subtitle">Experience</h3>
+    <ul class="about__experience">
+      {{range .Hero.About.Experience}}
+      <li class="about__entry">
+        <span class="about__org">{{.Organization}}</span>
+        {{if .Role}}<span class="about__role">{{.Role}}</span>{{end}}
+        {{if .Period}}<span class="about__period">{{.Period}}</span>{{end}}
+      </li>
+      {{end}}
+    </ul>
+  </aside>
+</div>{{end}}

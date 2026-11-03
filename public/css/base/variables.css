@@ -1,0 +1,24 @@
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+  --color-muted: #6a6a6a;
+  --color-hairline: rgba(17, 17, 17, 0.12);
+  --color-accent: #2f5fa8;
+  --color-badge: #ffffff;
+
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+  --step-0: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem);
+  --step-3: clamp(2.4rem, 1.4rem + 4.5vw, 5rem);
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 6rem;
+  --space-6: 8rem;
+  --measure: 32ch;
+}

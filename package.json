@@ -1,0 +1,27 @@
+{
+  "name": "portoku",
+  "version": "1.0.0",
+  "description": "Personal portfolio website built with Go and native web technologies.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build:lanyard": "node -e \"require('esbuild').buildSync({entryPoints:['src/lanyard/entry.jsx'],bundle:true,minify:true,format:'esm',outfile:'public/js/vendor/lanyard.js',loader:{'.jsx':'jsx','.css':'css'},jsx:'automatic',target:['es2020'],define:{'process.env.NODE_ENV':'\\\"production\\\"'}}); console.log('BUILD_OK')\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

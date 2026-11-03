@@ -1,0 +1,26 @@
+# local env
+.env
+
+# build output
+/bin/
+/tmp/
+*.exe
+
+# go
+*.test
+*.out
+
+# os / editor
+.DS_Store
+.vscode/
+.idea/
+
+.AGENTS.md
+# dependencies
+node_modules/
+
+# local browser automation
+.playwright-mcp/
+
+# generated screenshots
+lanyard-*.png
