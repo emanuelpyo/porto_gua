@@ -1,5 +1,6 @@
 # local env
 .env
+.env.*
 
 # build output
 /bin/
@@ -15,7 +16,15 @@
 .vscode/
 .idea/
 
+# agent instructions
+AGENTS.md
 .AGENTS.md
+**/AGENTS.md
+**/.AGENTS.md
+
+# reference files
+/reference/
+
 # dependencies
 node_modules/
 

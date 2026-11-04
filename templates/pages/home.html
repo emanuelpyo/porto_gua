@@ -1,10 +1,19 @@
-{{define "home.html"}}<section class="hero" aria-labelledby="hero-heading">
+{{define "home.html"}}
+<section class="hero" aria-labelledby="hero-heading">
   <span class="hero__word" aria-hidden="true">{{.Hero.BackgroundWord}}</span>
 
   <div class="hero__top">
     <p class="hero__intro">
       {{.Hero.Intro}}
-      <button class="hero__more" type="button" data-about-open aria-haspopup="dialog" aria-controls="about-panel">[more]</button>
+      <button
+        class="hero__more"
+        type="button"
+        data-about-open
+        aria-haspopup="dialog"
+        aria-controls="about-panel"
+      >
+        [more]
+      </button>
     </p>
     <p class="hero__descriptor">{{.Hero.Descriptor}}</p>
   </div>
@@ -24,15 +33,29 @@
         <a class="panel" href="/projects" data-panel aria-label="Projects">
           <span class="panel__marquee" aria-hidden="true">
             <span class="panel__row" data-panel-row>
-              <span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span>
+              <span class="panel__word">PROJECTS</span
+              ><span class="panel__word">PROJECTS</span
+              ><span class="panel__word">PROJECTS</span
+              ><span class="panel__word">PROJECTS</span>
             </span>
           </span>
         </a>
       </div>
       <div class="panel-slot">
         <span class="panel__label" aria-hidden="true">Journey</span>
-        <a class="panel panel--image" href="/journey" data-panel-image aria-label="Journey">
-          <img class="panel__image" src="/public/images/background/card2.png" alt="Journey" loading="lazy" decoding="async">
+        <a
+          class="panel panel--image"
+          href="/journey"
+          data-panel-image
+          aria-label="Journey"
+        >
+          <img
+            class="panel__image"
+            src="/public/images/background/card2.png"
+            alt="Journey"
+            loading="lazy"
+            decoding="async"
+          />
         </a>
       </div>
       <div class="panel-slot">
@@ -40,15 +63,33 @@
           <span class="contact__corner contact__corner--tl">Contact</span>
           <span class="contact__corner contact__corner--tr">Me</span>
           <div class="contact__email" data-contact-email>
-            <button class="contact__email-button" type="button" data-contact-copy aria-label="Copy email address deryl@lawkey.id">
+            <button
+              class="contact__email-button"
+              type="button"
+              data-contact-copy
+              aria-label="Copy email address deryl@lawkey.id"
+            >
               <span class="contact__email-track" data-contact-track>
                 <span class="contact__email-label">Email</span>
-                <span class="contact__email-label contact__email-label--copied">Copied</span>
+                <span class="contact__email-label contact__email-label--copied"
+                  >Copied</span
+                >
               </span>
             </button>
-            <span class="sr-only" role="status" aria-live="polite" data-contact-status></span>
+            <span
+              class="sr-only"
+              role="status"
+              aria-live="polite"
+              data-contact-status
+            ></span>
           </div>
-          <a class="contact__corner contact__corner--bl" href="https://github.com/emanuelpyo" target="_blank" rel="noopener noreferrer">Github</a>
+          <a
+            class="contact__corner contact__corner--bl"
+            href="https://github.com/emanuelpyo"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Github</a
+          >
           <span class="contact__corner contact__corner--br">2026</span>
         </div>
       </div>
@@ -69,20 +110,43 @@
 
 <div class="about" data-about hidden>
   <div class="about__overlay" data-about-close></div>
-  <aside class="about__panel" id="about-panel" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
-    <button class="about__close" type="button" data-about-close aria-label="Close About panel">&times;</button>
+  <aside
+    class="about__panel"
+    id="about-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="about-title"
+    tabindex="-1"
+  >
+    <button
+      class="about__close"
+      type="button"
+      data-about-close
+      aria-label="Close About panel"
+    >
+      &times;
+    </button>
     <h2 class="about__title" id="about-title">About</h2>
-    {{range .Hero.About.Bio}}<p class="about__text">{{.}}</p>{{end}}
-    <img class="about__portrait" src="{{.Hero.About.Portrait}}" alt="Portrait of Deryl Pyo" loading="lazy" decoding="async">
+    {{range .Hero.About.Bio}}
+    <p class="about__text">{{.}}</p>
+    {{end}}
+    <img
+      class="about__portrait"
+      src="{{.Hero.About.Portrait}}"
+      alt="Portrait of Deryl Pyo"
+      loading="lazy"
+      decoding="async"
+    />
     <h3 class="about__subtitle">Experience</h3>
     <ul class="about__experience">
       {{range .Hero.About.Experience}}
       <li class="about__entry">
         <span class="about__org">{{.Organization}}</span>
-        {{if .Role}}<span class="about__role">{{.Role}}</span>{{end}}
-        {{if .Period}}<span class="about__period">{{.Period}}</span>{{end}}
+        {{if .Role}}<span class="about__role">{{.Role}}</span>{{end}} {{if
+        .Period}}<span class="about__period">{{.Period}}</span>{{end}}
       </li>
       {{end}}
     </ul>
   </aside>
-</div>{{end}}
+</div>
+{{end}}
