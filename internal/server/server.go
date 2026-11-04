@@ -36,6 +36,8 @@ func New(cfg config.Config, root string, logger *log.Logger) (*Server, error) {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /", handler.Home)
+	mux.HandleFunc("GET /projects", handler.Projects)
+	mux.HandleFunc("GET /journey", handler.Journey)
 	mux.Handle("GET /public/", http.StripPrefix("/public/", http.FileServerFS(assets)))
 
 	return &Server{

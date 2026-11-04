@@ -1,0 +1,155 @@
+/* Section 2: scroll-driven editorial panels. One card for now. */
+
+.panels {
+  position: relative;
+  background: #f4f5f7;
+  border-top: 1px solid var(--color-hairline);
+  height: 260vh;
+}
+
+.panels__sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.panels__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  width: max-content;
+  padding-inline: clamp(1.5rem, 6vw, 6rem);
+  will-change: transform;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  width: clamp(24rem, 72vw, 82rem);
+  min-height: clamp(26rem, 72vh, 48rem);
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  color: var(--color-fg);
+  text-decoration: none;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.04);
+}
+
+.panel:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 4px;
+}
+
+.panel--image {
+  position: relative;
+  display: block;
+  background: #e9ebef;
+}
+
+.panel__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.panel__marquee {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.panel__row {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.panel__word {
+  flex: none;
+  padding-right: 0.14em;
+  font-family: var(--font-sans);
+  font-size: clamp(9rem, 25vw, 30rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.82;
+  color: #111111;
+}
+
+@media (max-width: 1024px) {
+  .panel {
+    width: 82vw;
+    min-height: 62vh;
+  }
+
+  .panel__word {
+    font-size: clamp(10rem, 25vw, 20rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .panels {
+    height: 200vh;
+  }
+
+  .panels__track {
+    padding-inline: 8vw;
+  }
+
+  .panel {
+    width: 88vw;
+    min-height: 50vh;
+  }
+
+  .panel__word {
+    font-size: clamp(6rem, 27vw, 12rem);
+    letter-spacing: -0.065em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panels {
+    height: auto;
+  }
+
+  .panels__sticky {
+    position: static;
+    height: auto;
+    padding-block: clamp(3rem, 8vh, 6rem);
+  }
+
+  .panels__track {
+    width: 100%;
+    transform: none !important;
+  }
+
+  .panel {
+    transform: none !important;
+    width: min(100%, 82rem);
+  }
+
+  .panel__row {
+    transform: none !important;
+  }
+}
+.panel--image {
+  display: block;
+  background: #e9ebef;
+}
+
+.panel__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

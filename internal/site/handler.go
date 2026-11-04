@@ -80,6 +80,34 @@ func (h *Handler) Home(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (h *Handler) Projects(w http.ResponseWriter, r *http.Request) {
+	data := PageData{
+		Title:       "Projects | " + h.appName,
+		AppName:     h.appName,
+		Environment: h.env,
+		Hero:        defaultHero(),
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	if err := h.templates.Render(w, "projects.html", data); err != nil {
+		h.logger.Printf("render projects: %v", err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+	}
+}
+
+func (h *Handler) Journey(w http.ResponseWriter, r *http.Request) {
+	data := PageData{
+		Title:       "Journey | " + h.appName,
+		AppName:     h.appName,
+		Environment: h.env,
+		Hero:        defaultHero(),
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	if err := h.templates.Render(w, "journey.html", data); err != nil {
+		h.logger.Printf("render journey: %v", err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+	}
+}
+
 func (h *Handler) notFound(w http.ResponseWriter) {
 	http.Error(w, "page not found", http.StatusNotFound)
 }

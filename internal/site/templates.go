@@ -15,6 +15,8 @@ type Templates struct {
 
 var pageFiles = []string{
 	"pages/home.html",
+	"pages/projects.html",
+	"pages/journey.html",
 }
 
 func LoadTemplates(fsys fs.FS, root string) (*Templates, error) {

@@ -1,0 +1,45 @@
+/* Projects page structure. */
+
+.projects-page {
+  min-height: 100dvh;
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1.25rem, 4vw, 4rem) clamp(4rem, 10vh, 8rem);
+  background: var(--color-bg);
+}
+
+.projects-page__nav {
+  margin-bottom: clamp(4rem, 16vh, 10rem);
+}
+
+.projects-page__back {
+  font-size: var(--step-0);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.projects-page__back:hover {
+  color: var(--color-accent);
+}
+
+.projects-page__back:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 3px;
+}
+
+.projects-page__header {
+  max-width: 60rem;
+}
+
+.projects-page__title {
+  font-size: var(--step-3);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.projects-page__intro {
+  max-width: 40ch;
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
