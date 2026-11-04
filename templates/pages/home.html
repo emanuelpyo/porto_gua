@@ -16,19 +16,53 @@
   </div>
 </section>
 
-<section class="panels" aria-label="Projects" data-panels>
+<section class="panels" aria-label="Portfolio panels" data-panels>
   <div class="panels__sticky" data-panels-sticky>
     <div class="panels__track" data-panels-track>
-      <a class="panel" href="/projects" data-panel aria-label="Projects">
-        <span class="panel__marquee" aria-hidden="true">
-          <span class="panel__row" data-panel-row>
-            <span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span>
+      <div class="panel-slot">
+        <span class="panel__label" aria-hidden="true">Projects</span>
+        <a class="panel" href="/projects" data-panel aria-label="Projects">
+          <span class="panel__marquee" aria-hidden="true">
+            <span class="panel__row" data-panel-row>
+              <span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span><span class="panel__word">PROJECTS</span>
+            </span>
           </span>
-        </span>
-      </a>
-      <a class="panel panel--image" href="/journey" data-panel-image aria-label="Journey">
-        <img class="panel__image" src="/public/images/background/card2.png" alt="Journey" loading="lazy" decoding="async">
-      </a>
+        </a>
+      </div>
+      <div class="panel-slot">
+        <span class="panel__label" aria-hidden="true">Journey</span>
+        <a class="panel panel--image" href="/journey" data-panel-image aria-label="Journey">
+          <img class="panel__image" src="/public/images/background/card2.png" alt="Journey" loading="lazy" decoding="async">
+        </a>
+      </div>
+      <div class="panel-slot">
+        <div class="panel panel--contact">
+          <span class="contact__corner contact__corner--tl">Contact</span>
+          <span class="contact__corner contact__corner--tr">Me</span>
+          <div class="contact__email" data-contact-email>
+            <button class="contact__email-button" type="button" data-contact-copy aria-label="Copy email address deryl@lawkey.id">
+              <span class="contact__email-track" data-contact-track>
+                <span class="contact__email-label">Email</span>
+                <span class="contact__email-label contact__email-label--copied">Copied</span>
+              </span>
+            </button>
+            <span class="sr-only" role="status" aria-live="polite" data-contact-status></span>
+          </div>
+          <a class="contact__corner contact__corner--bl" href="https://github.com/emanuelpyo" target="_blank" rel="noopener noreferrer">Github</a>
+          <span class="contact__corner contact__corner--br">2026</span>
+        </div>
+      </div>
+      <div class="panel-slot">
+        <div class="panel panel--make">
+          <p class="make__line">MAKE IT MATTER.</p>
+          <p class="make__line">MAKE THINGS WORK.</p>
+          <p class="make__line">MAKE WHAT'S NEXT.</p>
+          <p class="make__line">MAKE IT HAPPEN.</p>
+          <p class="make__line">MAKE IT REAL.</p>
+          <p class="make__line">MAKE A DIFFERENCE.</p>
+          <p class="make__line">MAKE IT BETTER.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

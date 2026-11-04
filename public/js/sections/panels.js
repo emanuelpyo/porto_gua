@@ -3,6 +3,7 @@ const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 function initPanels() {
   const section = document.querySelector("[data-panels]");
   const track = document.querySelector("[data-panels-track]");
+  const slots = document.querySelectorAll(".panel-slot");
   const panels = document.querySelectorAll(".panel");
   const row = document.querySelector("[data-panel-row]");
   if (!section || !track || !panels.length) return;
@@ -27,7 +28,7 @@ function initPanels() {
     sectionTop = rect.top + window.scrollY;
     sectionHeight = section.offsetHeight;
     viewport = window.innerHeight;
-    wordWidth = row.firstElementChild?.getBoundingClientRect().width || 0;
+    wordWidth = row ? row.firstElementChild?.getBoundingClientRect().width || 0 : 0;
     gap = parseFloat(getComputedStyle(track).columnGap) || 0;
     baseWidth = panels[0].offsetWidth;
     const trackWidth = panels.length * baseWidth + (panels.length - 1) * gap;
@@ -55,9 +56,9 @@ function initPanels() {
     const shift = progress * travel;
     track.style.transform = `translate3d(${-shift}px, 0, 0)`;
     let acc = 0;
-    panels.forEach((panel) => {
-      panel.style.transform = `translate3d(${-acc}px, 0, 0) scale(${scale})`;
-      acc += (1 - scale) * panel.offsetWidth;
+    slots.forEach((slot, i) => {
+      slot.style.transform = `translate3d(${-acc}px, 0, 0) scale(${scale})`;
+      acc += (1 - scale) * panels[i].offsetWidth;
     });
 
     if (row && !force && Math.abs(velocity) > 0.01) {
