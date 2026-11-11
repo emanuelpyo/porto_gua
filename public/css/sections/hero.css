@@ -141,6 +141,16 @@ overflow-y: visible;
   to { transform: translateX(0); }
 }
 
+/* Mobile slide-up/down */
+@keyframes about-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes about-slide-down {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
 .about__close {
   position: absolute;
   top: 12px;
@@ -211,34 +221,83 @@ overflow-y: visible;
   .hero__descriptor { max-width: 26ch; }
 }
 
-@media (max-width: 720px) {
+/* Tablet and mobile: one vertical reading flow.
+   Lanyard on top, headline, then supporting description. */
+@media (max-width: 900px) {
   .hero {
-    grid-template-rows: auto 1fr;
+    display: flex;
+    flex-direction: column;
     min-height: auto;
-    padding: 1.25rem 1.25rem var(--space-4);
-    gap: var(--space-2);
+    padding: clamp(1.25rem, 3.5vh, 2.5rem) clamp(1.5rem, 5vw, 2.5rem)
+      clamp(2.5rem, 7vh, 4rem);
+    gap: clamp(1.25rem, 3.5vh, 2.5rem);
   }
+
+  .hero__stage {
+    position: relative;
+    inset: auto;
+    order: -1;
+    width: 100%;
+    height: clamp(300px, 50vh, 520px);
+    min-height: 0;
+  }
+
   .hero__top {
     flex-direction: column;
-    gap: var(--space-2);
+    align-items: flex-start;
+    gap: clamp(0.75rem, 2.5vw, 1.25rem);
   }
+
+  .hero__intro {
+    max-width: 100%;
+    font-size: clamp(1.5rem, 4.8vw, 2.9rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+
   .hero__descriptor {
+    max-width: 46ch;
     text-align: left;
-    max-width: 34ch;
-    font-size: 0.9rem;
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    line-height: 1.5;
+    color: var(--color-muted);
   }
+
   .hero__word {
-    font-size: clamp(2.6rem, 15vw, 5rem);
-    bottom: 0;
+    bottom: 0.15em;
+    font-size: clamp(1.35rem, 6.4vw, 3.1rem);
   }
-  .hero__stage {
-    min-height: 56vh;
-  }
+
   .about__panel {
     width: 100%;
     max-width: none;
     min-width: 0;
     border-right: 0;
+    animation: about-slide-up 260ms cubic-bezier(0.22, 0.8, 0.24, 1) both;
+  }
+
+  .about.closing .about__panel {
+    animation: about-slide-down 260ms cubic-bezier(0.22, 0.8, 0.24, 1) both;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .hero__stage {
+    height: clamp(360px, 54vh, 600px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-inline: 1.25rem;
+  }
+
+  .hero__stage {
+    height: clamp(260px, 46vh, 360px);
+  }
+
+  .hero__intro {
+    font-size: clamp(1.35rem, 6.6vw, 1.5rem);
   }
 }
 

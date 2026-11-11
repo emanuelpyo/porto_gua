@@ -15,9 +15,15 @@ function initAbout() {
   };
 
   const close = () => {
-    dialog.hidden = true;
-    document.body.style.overflow = "";
-    if (lastFocus instanceof HTMLElement) lastFocus.focus({ preventScroll: true });
+    // add closing animation, then hide after duration
+    dialog.classList.add("closing");
+    const duration = 260; // ms, matches CSS animation
+    setTimeout(() => {
+      dialog.hidden = true;
+      dialog.classList.remove("closing");
+      document.body.style.overflow = "";
+      if (lastFocus instanceof HTMLElement) lastFocus.focus({ preventScroll: true });
+    }, duration);
   };
 
   openBtn?.addEventListener("click", open);
