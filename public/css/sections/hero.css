@@ -253,6 +253,21 @@ overflow-y: visible;
       clamp(2.5rem, 7vh, 4rem);
     gap: clamp(0.75rem, 2vh, 1.5rem);
   }
+
+  @media (max-width: 900px) {
+    .hero {
+      padding-top: 0;
+      padding-inline: 0;
+      padding-bottom: 0;
+      gap: clamp(0.9rem, 2.5vw, 1.5rem);
+    }
+  }
+
+@media (max-width: 600px) {
+  .hero__top {
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+  }
+}
   .hero {
     padding-top: 0;
     padding-inline: 0;
@@ -334,6 +349,9 @@ overflow-y: visible;
   .hero__descriptor {
     margin-bottom: clamp(0.5rem, 2vh, 1rem);
   }
+  .hero__top {
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+  }
 }
 
 
@@ -345,7 +363,7 @@ overflow-y: visible;
 
 @media (max-width: 480px) {
   .hero {
-    padding-inline: 1.25rem;
+    padding-inline: 0;
   }
 
   .hero__stage {
