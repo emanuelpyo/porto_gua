@@ -265,19 +265,19 @@ overflow-y: visible;
     inset: auto;
     order: -1;
     width: 100%;
-    height: clamp(260px, 55vh, 480px);
+    height: clamp(300px, 70vh, 560px);
     min-height: 0;
   }
 
   .hero__top {
     flex-direction: column;
     align-items: flex-start;
-    gap: clamp(0.75rem, 2.5vw, 1.25rem);
+    gap: clamp(0.9rem, 2.5vw, 1.5rem);
   }
 
   .hero__intro {
     max-width: 100%;
-    font-size: clamp(1.5rem, 4.8vw, 2.9rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     line-height: 1.12;
     letter-spacing: -0.01em;
   }
@@ -285,16 +285,18 @@ overflow-y: visible;
   .hero__descriptor {
     max-width: 46ch;
     text-align: left;
-    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     line-height: 1.5;
     color: var(--color-muted);
     margin-bottom: clamp(2rem, 5vh, 4rem);
   }
 
   .hero__word {
-    bottom: clamp(3rem, 8vh, 5rem);
+    bottom: clamp(10rem, 20vh, 14rem);
     font-size: clamp(1.35rem, 6.4vw, 3.1rem);
   }
+
+
 
   .about__panel {
     width: 100%;
@@ -321,6 +323,16 @@ overflow-y: visible;
     background: var(--color-muted);
     border-radius: 2px;
     margin: 8px auto;
+  }
+}
+
+/* Hide Aut Viam on small mobile (≤600px) and reduce description spacing */
+@media (max-width: 600px) {
+  .hero__word {
+    display: none;
+  }
+  .hero__descriptor {
+    margin-bottom: clamp(0.5rem, 2vh, 1rem);
   }
 }
 
