@@ -33,6 +33,7 @@ function initPanels() {
   let lastScroll = 0;
   let textX = 0;
   let velocity = 0;
+let manualOffset = 0;
 
   // Measure the last card's original center without transforms.
   const getBaseLastCardCenter = () => {
@@ -93,11 +94,13 @@ function initPanels() {
 
     lastScroll = window.scrollY;
     velocity = 0;
+    manualOffset = 0;
 
     update(true);
   };
 
   const update = (force) => {
+
     const scrollY = window.scrollY;
 
     // Overall vertical scroll progress through Section 2.
@@ -120,7 +123,7 @@ function initPanels() {
     const scale = 1 - animationProgress * (1 - FINAL_SCALE);
 
     // Horizontal movement reaches its maximum at the stop point.
-    const shift = animationProgress * travel;
+    const shift = animationProgress * travel + manualOffset;
 
     track.style.transform = `translate3d(${-shift}px, 0, 0)`;
 
@@ -181,6 +184,39 @@ function initPanels() {
   window.addEventListener("resize", onResize);
 
   reduce.addEventListener("change", onResize);
+if (window.innerWidth <= 600) {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isDragging = false;
+  const touchThreshold = 10;
+  const onTouchStart = (e) => {
+    const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    isDragging = false;
+  };
+  const onTouchMove = (e) => {
+    const t = e.touches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    if (!isDragging) {
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > touchThreshold) {
+        isDragging = true;
+      } else {
+        return;
+      }
+    }
+    e.preventDefault();
+    manualOffset = -dx;
+    if (manualOffset < 0) manualOffset = 0;
+    if (manualOffset > travel) manualOffset = travel;
+    update(true);
+  };
+  const onTouchEnd = () => {};
+  track.addEventListener('touchstart', onTouchStart, {passive:true});
+  track.addEventListener('touchmove', onTouchMove, {passive:false});
+  track.addEventListener('touchend', onTouchEnd);
+}
 
   if ("ResizeObserver" in window) {
     const observer = new ResizeObserver(onResize);

@@ -365,3 +365,10 @@ a.contact__corner:focus-visible {
     transition: none;
   }
 }
+
+/* Mobile adjustments – keep JS-driven animation */
+@media (max-width: 600px) {
+  .panel-slot {
+    width: 80vw;
+  }
+}
