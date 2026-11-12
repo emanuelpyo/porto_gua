@@ -89,8 +89,9 @@ let manualOffset = 0;
     // Target position based on the reference screenshot.
     const targetCenter = viewport * FINAL_CARD_CENTER_RATIO;
 
-    // Calculate the exact horizontal travel required.
-    travel = Math.max(0, lastCardCenter - finalCompensation - targetCenter);
+    // Calculate horizontal travel based on total track width (fallback for mobile where slot widths may be large).
+    const trackWidth = track.scrollWidth;
+    travel = Math.max(0, trackWidth - viewport);
 
     lastScroll = window.scrollY;
     velocity = 0;
@@ -122,8 +123,13 @@ let manualOffset = 0;
     // Scaling stops at the same time as horizontal movement.
     const scale = 1 - animationProgress * (1 - FINAL_SCALE);
 
-    // Horizontal movement reaches its maximum at the stop point.
-    const shift = animationProgress * travel + manualOffset;
+
+    // Compute base shift from vertical scroll
+    const baseShift = animationProgress * travel;
+    const minManual = -baseShift;
+    const maxManual = travel - baseShift;
+    manualOffset = Math.max(minManual, Math.min(maxManual, manualOffset));
+    const shift = Math.max(0, Math.min(travel, baseShift + manualOffset));
 
     track.style.transform = `translate3d(${-shift}px, 0, 0)`;
 
@@ -174,7 +180,8 @@ let manualOffset = 0;
       raf = 0;
     }
 
-    measure();
+measure();
+    manualOffset = 0;
   };
 
   window.addEventListener("scroll", onScroll, {
@@ -186,32 +193,38 @@ let manualOffset = 0;
   reduce.addEventListener("change", onResize);
 if (window.innerWidth <= 600) {
   let touchStartX = 0;
-  let touchStartY = 0;
-  let isDragging = false;
+  let startOffset = 0;
   const touchThreshold = 10;
-  const onTouchStart = (e) => {
-    const t = e.touches[0];
-    touchStartX = t.clientX;
-    touchStartY = t.clientY;
-    isDragging = false;
-  };
-  const onTouchMove = (e) => {
-    const t = e.touches[0];
-    const dx = t.clientX - touchStartX;
-    const dy = t.clientY - touchStartY;
-    if (!isDragging) {
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > touchThreshold) {
-        isDragging = true;
-      } else {
-        return;
-      }
-    }
-    e.preventDefault();
-    manualOffset = -dx;
-    if (manualOffset < 0) manualOffset = 0;
-    if (manualOffset > travel) manualOffset = travel;
-    update(true);
-  };
+    const onTouchStart = (e) => {
+      const t = e.touches[0];
+      touchStartX = t.clientX;
+      // Sync manualOffset with current scroll progress to allow bidirectional drag
+      const scrollY = window.scrollY;
+      const prog = Math.min(1, Math.max(0, (scrollY - sectionTop) / Math.max(1, sectionHeight - viewport)));
+      const animProg = Math.min(1, Math.max(0, prog / HORIZONTAL_STOP_PROGRESS));
+      const baseShift = animProg * travel;
+      const minManual = -baseShift;
+      const maxManual = travel - baseShift;
+      manualOffset = Math.max(minManual, Math.min(maxManual, manualOffset));
+      startOffset = manualOffset;
+    };
+    const onTouchMove = (e) => {
+      const t = e.touches[0];
+      const dx = t.clientX - touchStartX;
+      // Horizontal drag only (ignore vertical)
+      if (Math.abs(dx) < touchThreshold) return;
+      e.preventDefault();
+      // Recalculate baseShift in case vertical scroll changed during drag
+      const scrollY = window.scrollY;
+      const prog = Math.min(1, Math.max(0, (scrollY - sectionTop) / Math.max(1, sectionHeight - viewport)));
+      const animProg = Math.min(1, Math.max(0, prog / HORIZONTAL_STOP_PROGRESS));
+      const baseShift = animProg * travel;
+      const minManual = -baseShift;
+      const maxManual = travel - baseShift;
+      manualOffset = startOffset - dx;
+      manualOffset = Math.max(minManual, Math.min(maxManual, manualOffset));
+      update(true);
+    };
   const onTouchEnd = () => {};
   track.addEventListener('touchstart', onTouchStart, {passive:true});
   track.addEventListener('touchmove', onTouchMove, {passive:false});
